@@ -1,3 +1,3 @@
-let obj = require('./../module/b');
+let Toast = require('module/toast.js').Toast;
 
-console.log(obj);
+Toast('hello')

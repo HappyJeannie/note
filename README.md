@@ -16,3 +16,27 @@ npm start             // 项目启动，打开 localhost:300
 
 ### 二、目录结构说明
 
+```
+|-- bin       // 启动目录
+|-- public      // webpack 输出目录，express 启动后加载的文件
+  |-- js
+  |-- css
+  |-- fonts
+  |-- imgs
+|-- routes       // 路由目录，根据不同页面划分
+|-- src           // 源文件
+  |-- imgs
+  |-- js
+    |-- app           // 各个页面的入口文件
+      |-- index.js      
+      |-- detail.js
+    |-- lib           // 引入的库
+    |-- moduls        // 自定义模块 
+  |-- less
+  |-- webpack.config.js     // webpack 配置文件
+|-- views
+  |-- index.ejs       // html 模版文件
+|-- app.js        // 整个项目的入口文件
+|-- package.json    // 包管理
+
+```

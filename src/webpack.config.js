@@ -6,29 +6,36 @@ module.exports = {
   output : {
     path : path.join(__dirname,'../public/js'),
     filename : 'index.js'
-  }/*,
-  modules:{
-    // rules:[
-    //   {
-    //     test : '/\.less$/',
-    //     use : [
-    //       'style-loader',
-    //       'css-loader',
-    //       'less-loader'
-    //     ]
-    //   }
-    // ],
-    // resolve:{
-    //   alias : {
-    //     jquery : path.join(__dirname,'js/lib/jquery.js'),
-    //     module : path.join(__dirname,'js/module'),
-    //     less : path.join(__dirname,'less')
-    //   }
-    // },
-    // plugins:[
-    //   new webpack.ProvidePlugin({
-    //     $ : 'jquery'
-    //   })
-    // ]
-  }*/
+  },
+  module:{
+    rules:[
+      {
+        test : '/\.less$/',
+        use : [
+          'style-loader',
+          'css-loader',
+          'less-loader'
+        ]
+      },
+      {
+        test : '/\.css$/',
+        use : [
+          'style-loader',
+          'css-loader'
+        ]
+      }
+    ]
+  },
+  resolve:{
+    alias : {
+      jquery : path.join(__dirname,'js/lib/jquery.js'),
+      module : path.join(__dirname,'js/module'),
+      less : path.join(__dirname,'less')
+    }
+  },
+  plugins:[
+    new webpack.ProvidePlugin({
+      $ : 'jquery'
+    })
+  ]
 }
