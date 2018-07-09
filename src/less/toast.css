@@ -1,4 +1,11 @@
-.toast {
+body {
+  width: 100vw;
+  height: 100vh;
+  padding: 0px;
+  margin: 0px;
+  background: #ccc;
+}
+body .toast {
   position: fixed;
   left: 50%;
   bottom: 20px;
