@@ -44,7 +44,7 @@ Note.prototype = {
     if(!this.id)  this.$note.css('bottom', '10px');  //新增放到右边
   },
 
-  setStyle: function () {
+  setStyle: function () { 
     var color = this.colors[Math.floor(Math.random()*6)];
     this.$note.find('.note-head').css('background-color', color[0]);
     this.$note.find('.note-ct').css('background-color', color[1]);
@@ -79,6 +79,7 @@ Note.prototype = {
       if( $noteCt.data('before') != $noteCt.html() ) {
         $noteCt.data('before',$noteCt.html());
         self.setLayout();
+        debugger
         if(self.id){
           self.edit($noteCt.html())
         }else{
@@ -107,7 +108,7 @@ Note.prototype = {
   edit: function (msg) {
     var self = this;
     $.post('/api/notes/edit',{
-        id: this.id,
+        id: self.id,
         note: msg
       }).done(function(ret){
       if(ret.status === 0){

@@ -9,10 +9,12 @@ var NoteManager = (function(){
   function load() {
     $.get('/api/notes')
       .done(function(ret){
+        console.log('输出信息')
+        console.log(ret);
         if(ret.status == 0){
           $.each(ret.data, function(idx, article) {
               new Note({
-                id: article.id,
+                id: article.uid,
                 context: article.text,
                 username: article.username
               });
