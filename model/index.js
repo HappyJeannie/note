@@ -22,6 +22,10 @@ const sequelize = new Sequelize(undefined,undefined,undefined,{
     },
     uid:{
       type:Sequelize.STRING
+    },
+    id:{
+      type:Sequelize.STRING,
+      primaryKey: true
     }
   });
   

@@ -26,6 +26,7 @@ Note.prototype = {
   },
 
   initOpts: function (opts) {
+    
     this.opts = $.extend({}, this.defaultOpts, opts||{});
     if(this.opts.id){
        this.id = this.opts.id;
@@ -79,9 +80,13 @@ Note.prototype = {
       if( $noteCt.data('before') != $noteCt.html() ) {
         $noteCt.data('before',$noteCt.html());
         self.setLayout();
-        debugger
+        console.log('输出编辑信息的 this')
+        console.log(self);
+
         if(self.id){
           self.edit($noteCt.html())
+          console.log($noteCt)
+          console.log($noteCt.html())
         }else{
           self.add($noteCt.html())
         }
@@ -107,6 +112,8 @@ Note.prototype = {
 
   edit: function (msg) {
     var self = this;
+    console.log('点击时输出 id')
+    console.log(this);
     $.post('/api/notes/edit',{
         id: self.id,
         note: msg
@@ -126,6 +133,7 @@ Note.prototype = {
       .done(function(ret){
         if(ret.status === 0){
           Toast('add success');
+          self.$note.css('bottom', 'auto');
         }else{
           self.$note.remove();
           Event.fire('waterfall')

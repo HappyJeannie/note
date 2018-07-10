@@ -132,6 +132,12 @@ Note.destroy({where:{uid:uid}})                       // 删除一条数据
 
 可以全局安装 `node-inspector`，但是最新版已经支持 node 调试，可以在启动项目的时候使用命令 `node --inspect ./bin/www`
 
+### 五、登录注册功能
+
+### 1、passport
+
+node 中的 passport 模块可以实现登录注册的认证。
+
 
 ### 其他：
 

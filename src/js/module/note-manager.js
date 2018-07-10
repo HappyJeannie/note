@@ -14,7 +14,7 @@ var NoteManager = (function(){
         if(ret.status == 0){
           $.each(ret.data, function(idx, article) {
               new Note({
-                id: article.uid,
+                id: article.id,
                 context: article.text,
                 username: article.username
               });

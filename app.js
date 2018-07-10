@@ -4,8 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var passport = require('passport');
+var session = require('express-session');
+
 var indexRouter = require('./routes/index');
 var api = require('./routes/api');
+var auth = require('./routes/auth');
 
 var app = express();
 
@@ -19,8 +25,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(session({secret:'summer'}));      // 此处写自定义密钥
+app.use(passport.initialize());
+app.use(passport.session())
+
 app.use('/', indexRouter);
 app.use('/api', api);
+app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
