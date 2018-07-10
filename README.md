@@ -143,7 +143,7 @@ node 中的 passport 模块可以实现登录注册的认证。
 
 #### 1、发布订阅模式
 这个模式用于组件、模块之间进行解耦。
-./src/js/module/events.js 不是很明白
+<!-- ./src/js/module/events.js 不是很明白 -->
 
 #### 2、 width() 、 outerWidth()
 
