@@ -25,7 +25,7 @@ passport.use(new GitHubStrategy(
   {
     clientID: '3ad2adc665f2396d6468',
     clientSecret: '615bf118bd0853d4c8c936740b02492b710771ef',
-    callbackURL: "http://127.0.0.1:3000/auth/github/callback"
+    callbackURL: "http://happyjeannie.club/auth/github/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     // User.findOrCreate({ githubId: profile.id }, function (err, user) {
