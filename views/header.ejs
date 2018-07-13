@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>便签</title>
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <span class="logo"></span>  
+        <span class="text">Cloud</span>便签 
+      </div>
+      <div class="user">
+          <ul class="user-area">
+            <% if (isLogin){ %>
+              <li class="avatar"><img src="<%= user.avatar %>" alt=""></li>
+              <li class="name"><span title="<%= user.username %>"><%= user.username %></span></li>
+              <li class="line"><span class="line"> | </span> </li>
+              <li class="logout"><a class="logout" href="/auth/logout">注销</a></li>
+            <%} else { %>
+              <li><a class="login" title="GitHub登录" href="/auth/github"><i class="icon iconfont icon-socialgithuboutline"></i> <span>GitHub登录</span> </a>
+              </li>
+            <% } %>
+          </ul>
+      </div>
+    </header>

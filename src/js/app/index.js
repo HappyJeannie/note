@@ -1,4 +1,5 @@
-require('less/index.less');
+require('less/index.less')
+require('assets/css/iconfont.css');
 
 var NoteManager = require('module/note-manager.js').NoteManager;
 var Event = require('module/event.js');
