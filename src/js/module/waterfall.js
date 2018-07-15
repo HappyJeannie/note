@@ -35,7 +35,9 @@ var WaterFall = (function(){
         top: minSumHeight
       });
       colSumHeight[idx] = $cur.outerHeight(true) + colSumHeight[idx];
+      
     });
+    $ct.height($items.eq($items.length - 1).height() + 40 + (parseInt($items.eq($items.length - 1).css('top')) - 0));
   }
 
 

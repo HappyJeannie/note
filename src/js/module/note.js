@@ -6,18 +6,9 @@ var Event = require('module/event.js');
 function Note(opts){
   this.initOpts(opts);
   this.createNote();
-  this.setStyle();
   this.bindEvent();
 }
 Note.prototype = {
-  colors: [
-    ['#ea9b35','#efb04e'], // headColor, containerColor
-    ['#dd598b','#e672a2'],
-    ['#eee34b','#f2eb67'],
-    ['#c24226','#d15a39'],
-    ['#c1c341','#d0d25c'],
-    ['#3f78c3','#5591d2']
-  ],
 
   defaultOpts: {
     id: '',   //Note的 id
@@ -26,7 +17,7 @@ Note.prototype = {
   },
 
   initOpts: function (opts) {
-    
+    console.log(opts);
     this.opts = $.extend({}, this.defaultOpts, opts||{});
     if(this.opts.id){
        this.id = this.opts.id;
@@ -35,22 +26,22 @@ Note.prototype = {
 
   createNote: function () {
     var tpl =  '<div class="note">'
-              + '<div class="note-head"><span class="username"></span><span class="delete">&times;</span></div>'
+              + '<div class="note-head"><span class="time"></span><i class="icon iconfont icon-close delete"></i></div>'
               + '<div class="note-ct" contenteditable="true"></div>'
               +'</div>';
     this.$note = $(tpl);
-    this.$note.find('.note-ct').text(this.opts.context);
-    this.$note.find('.username').text(this.opts.username);
+    this.$note.find('.note-ct').html(this.opts.context);
+    this.$note.find('.time').text(this.opts.date);
     this.opts.$ct.append(this.$note);
-    if(!this.id)  this.$note.css('bottom', '10px');  //新增放到右边
+    if(!this.id){
+      console.log(this.opts.$ct)
+      let top = this.opts.$ct.height();
+      console.log(top)
+      this.$note.css('top', `${top}px`);  //新增放到右边
+      console.log('输出创建信息的 this')
+      console.log(this);
+    }
   },
-
-  setStyle: function () { 
-    var color = this.colors[Math.floor(Math.random()*6)];
-    this.$note.find('.note-head').css('background-color', color[0]);
-    this.$note.find('.note-ct').css('background-color', color[1]);
-  },
-
   setLayout: function(){
     var self = this;
     if(self.clk){
@@ -80,8 +71,7 @@ Note.prototype = {
       if( $noteCt.data('before') != $noteCt.html() ) {
         $noteCt.data('before',$noteCt.html());
         self.setLayout();
-        console.log('输出编辑信息的 this')
-        console.log(self);
+        
 
         if(self.id){
           self.edit($noteCt.html())
@@ -119,7 +109,7 @@ Note.prototype = {
         note: msg
       }).done(function(ret){
       if(ret.status === 0){
-        Toast('update success');
+        Toast('更新成功');
       }else{
         Toast(ret.errorMsg);
       }
@@ -132,7 +122,7 @@ Note.prototype = {
     $.post('/api/notes/add', {note: msg})
       .done(function(ret){
         if(ret.status === 0){
-          Toast('add success');
+          Toast('新增成功');
           self.$note.css('bottom', 'auto');
         }else{
           self.$note.remove();
@@ -148,7 +138,7 @@ Note.prototype = {
     $.post('/api/notes/delete', {id: this.id})
       .done(function(ret){
         if(ret.status === 0){
-          Toast('delete success');
+          Toast('删除成功');
           self.$note.remove();
           Event.fire('waterfall')
         }else{

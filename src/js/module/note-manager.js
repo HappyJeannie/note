@@ -11,12 +11,14 @@ var NoteManager = (function(){
       .done(function(ret){
         console.log('输出信息')
         console.log(ret);
+        
         if(ret.status == 0){
           $.each(ret.data, function(idx, article) {
               new Note({
                 id: article.id,
                 context: article.text,
-                username: article.username
+                username: article.username,
+                date:article.createdAt.split(' ')[0]
               });
           });
 
