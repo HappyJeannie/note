@@ -34,12 +34,8 @@ Note.prototype = {
     this.$note.find('.time').text(this.opts.date);
     this.opts.$ct.append(this.$note);
     if(!this.id){
-      console.log(this.opts.$ct)
       let top = this.opts.$ct.height();
-      console.log(top)
       this.$note.css('top', `${top}px`);  //新增放到右边
-      console.log('输出创建信息的 this')
-      console.log(this);
     }
   },
   setLayout: function(){
@@ -102,8 +98,6 @@ Note.prototype = {
 
   edit: function (msg) {
     var self = this;
-    console.log('点击时输出 id')
-    console.log(this);
     $.post('/api/notes/edit',{
         id: self.id,
         note: msg
